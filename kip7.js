@@ -60,4 +60,26 @@ async function create_token(_name, _symbol, _decimal, _amount) {
 }
 
 // 함수 호출
-create_token('test', 'TST', 0, 1000000)
+//create_token('test', 'TST', 0, 1000000)
+
+// 토큰을 거래하는 함수 선언 
+async function transfer(_address, _amount) {
+    // 발행한 토큰을 지갑에 추가
+    const token_info = require('./kip7.json')
+    const kip7 = await new caver.kct.kip7(token_info.address)
+    kip7.setWallet(keyringContainer)
+
+    const receipt = await kip7.transfer(
+        _address,
+        _amount, 
+        {
+            from : keyring.address
+        }
+    )
+
+    console.log("-> receipt: ", receipt)
+    return '토큰 거래 완료'
+}
+
+// 새로 생성한 지갑 주소 넣기
+console.log("-> transfer: ", transfer('0x739563DD6d5a8C0419775F83A8066B347C2da97b', 50))
