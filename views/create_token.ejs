@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        input {
+            border: 1px solid darkgray;
+            border-radius: 20px;
+            height: 30px;
+            color: darkgray;
+        }
+    </style>
+</head>
+<body>
+    <!-- 토큰의 이름, 심볼, 소수점, 발행량 입력하는 공간 -->
+    <form action="/token/create" method="get">
+        <input type="text" name="_name" placeholder="Name"><br>
+        <input type="text" name="_symbol" placeholder="Symbol"><br>
+        <input type="number" name="_decimal" placeholder="Decimal"><br>
+        <input type="number" name="_amount" placeholder="Amount"><br>
+        <input type="submit" value="토큰 발행">
+    </form>
+</body>
+</html>
