@@ -24,6 +24,14 @@ module.exports = function(){
         const input_decimal = req.query._decimal
         const input_amount = req.query._amount
         console.log("-> name, symbol, decimal, amount: ", input_name, input_symbol, input_decimal, input_amount)
+       
+        // 토큰 발행 함수 실행
+        const receipt = await token.create_token(
+            input_name, input_symbol, input_decimal, input_amount
+            )
+        
+        console.log("-> receipt: ", receipt)
+        res.send(receipt)
     })
-
+    return router
 }
