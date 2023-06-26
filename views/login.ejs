@@ -4,8 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
+    <style>
+        body {
+            padding: 15px;
+            text-align: center;
+        }
+
+        input {
+            border: 1px solid darkgray;
+            border-radius: 20px;
+            height: 30px;
+            color: darkgray;
+            margin-bottom: 10px;
+            padding-left: 10px;
+            width: 180px;
+            font-size: 11px;
+            outline: none;
+        }
+        .btn {
+            width: 193px;
+            color: white;
+            background-color: darkgrey;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    
+    <h3>로그인/</h3>
+    <form action="/signin" method="post">
+        <input type="text" name="_phone" placeholder="Phone"><br>
+        <input type="text" name="_pass" placeholder="Password"><br>
+        <input type="submit" value="로그인" class="btn">
+    </form>
+    <button type="button" onclick="location.href='/signup'">회원가입</button>
 </body>
 </html>
