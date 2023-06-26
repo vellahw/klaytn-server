@@ -4,15 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>메인페이지</title>
+    <style>
+         body {
+            padding: 15px;
+            text-align: center;
+        }
+
+        input {
+            border: 1px solid darkgray;
+            border-radius: 20px;
+            height: 30px;
+            color: darkgray;
+            margin-bottom: 10px;
+            padding-left: 10px;
+            width: 180px;
+            font-size: 11px;
+            outline: none;
+        }
+
+        button {
+
+        }
+    </style>
 </head>
 <body>
-    <h3>메인 페이지입니다</h3>
+    <h3>Main Page</h3>
     <h3>토큰 충전하기</h3>
     <form action="/token/charge" method="get">
         <!-- 토큰의 충전량을 입력 -->
         <input type="number" name="_amount" placeholder="Amount"><br>
         <input type="submit" value="충전">
     </form>
-    <button type="button" onclick="location.href='/info'">마이페이지</button>
+    <button type="button" onclick="location.href='/token/info'">마이페이지</button>
 </body>
 </html>

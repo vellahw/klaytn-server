@@ -53,7 +53,7 @@ async function create_token(_name, _symbol, _decimal, _amount) {
     //json을 문자열로 변환
     const data = JSON.stringify(kip7_address)
     //json 파일의 형태로 저장 (이름, 데이터)
-    fs.writeFileSync('kip7.json', data)
+    fs.writeFileSync('./token/kip7.json', data) // 경로!!
 
     return '토큰 발행 완료'
 }
@@ -123,6 +123,7 @@ async function transfer_from(_private, _amount) {
 // 두번째 지갑 프라이빗키 
 //transfer_from('0x289eff0c891aa43a6fbc046f35cc374264e8f33c2ff614888e02b47482d92570', 10)
 
+// 토큰 양 로드
 async function balance_of(_address) {
     const token_info = require('./kip7.json')
     const kip7 = await new caver.kct.kip7(token_info.address)
