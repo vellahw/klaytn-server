@@ -62,5 +62,43 @@ module.exports = ()=>{
         )
     })
 
+    // 로그인
+    router.post('/signin', (req, res)=>{
+        // 유저가 보낸 데이터를 변수에 대입, 삽입
+        const input_phone = req.body._phone
+        const input_pass = req.body._pass
+        console.log('-> 로그인 정보: ', input_phone, input_pass)
+
+        // 로그인 확인 == Mysql 데이터와 비교
+        const sql = `
+            select *
+            from user
+            where
+            phone = ?
+            and
+            password = ?
+        `
+        const values = [input_phone, input_pass]
+        connection.query(
+            sql,
+            values,
+            (err, result)=>{
+                if(err){
+                    console.log("에러발생: ", err)
+                    res.send(err)
+                } else {
+                    // 로그인이 성공하는 조건? == (result.length !=0)
+                    // 데이터는 배열 안의 json 형태:  [{}]
+                    if(result.length != 0) {
+                        // 세션에 데이터 저장
+                        // Request 안에 Session 안에 logined 라는 키로 result 저장
+                        req.session.logined = result[0] 
+                    }
+                    res.redirect('/')
+                }
+            }
+        )
+    })
+
     return router
 }
