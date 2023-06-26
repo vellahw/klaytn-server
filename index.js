@@ -17,8 +17,8 @@ app.use(express.urlencoded({extended:false}))
 require('dotenv').config()
 
 // 메인 페이지 설정
-const main = require('./routes/main.js')
-app.get('/', main)
+const main = require('./routes/main.js')()
+app.use('/', main)
 
 // 모듈화 (라우팅)
 const token = require('./routes/token.js')() // 빈괄호=함수 호출

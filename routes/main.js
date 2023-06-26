@@ -19,9 +19,9 @@ const token = require('../token/kip7.js')
 
 module.exports = ()=>{
     // 기본 경로 localhost:3000/
-    router.get('/', (req, res)=>
+    router.get('/', (req, res)=>{
         res.render('login.ejs')
-    )
+    })
 
     // 회원가입 페이지
     router.get('/signup', (req, res)=>
@@ -33,7 +33,7 @@ module.exports = ()=>{
         // 유저가 입력한 정보를 변수에 대입, 확인
         const input_phone = req.body._phone
         const input_pass = req.body._pass
-        console('-> 회원가입 정보: ', input_phone, input_pass)
+        console.log('-> 회원가입 정보: ', input_phone, input_pass)
         const wallet = await token.create_wallet() // 지갑 주소
         console.log('-> 지갑 생성 됐을까욤: ', wallet)
         
@@ -62,4 +62,5 @@ module.exports = ()=>{
         )
     })
 
+    return router
 }
