@@ -43,10 +43,10 @@ module.exports = function(){
             console.log('-> 입력한 Amount: ', input_amount)
             
             const wallet = req.session.logined.wallet
-            console.log('-> 받을 주소: ', wallet)
+            console.log('-> 로그인한 유저 지갑 주소: ', wallet)
             
             // kip7.js에 있는 transfer() 호출 : 토큰을 거래하는 함수
-            const receipt = token.transfer(wallet, input_amount)
+            const receipt = await token.transfer(wallet, input_amount)
             console.log('-> 결과 확인: ', receipt)
 
             res.redirect('/')

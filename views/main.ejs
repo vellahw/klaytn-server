@@ -22,8 +22,29 @@
             outline: none;
         }
 
-        button {
+        .charge {
+            width: 193px;
+            background-color: black;
+            color: #fff;
+            font-weight: bold;
+        }
 
+        button {
+            background-color: #fff;
+            color: black;
+            font-weight: bold;
+            border: none;
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #fff;
+            color: darkgray;
+            font-weight: bold;
+            border: none;
+            font-size: 11px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -33,7 +54,7 @@
     <form action="/token/charge" method="get">
         <!-- 토큰의 충전량을 입력 -->
         <input type="number" name="_amount" placeholder="Amount"><br>
-        <input type="submit" value="충전">
+        <input type="submit" value="충전" class="charge">
     </form>
     <button type="button" onclick="location.href='/token/info'">마이페이지</button>
 </body>

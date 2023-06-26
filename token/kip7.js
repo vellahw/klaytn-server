@@ -4,6 +4,7 @@ const CaverExtKAS = require('caver-js-ext-kas')
 // class 생성
 const caver = new CaverExtKAS()
 // fs 모듈 로드
+// 토큰의 주소를 만들었을 때 파일로 관리하기 위해..?
 const fs = require('fs')
 // dotenv 로드 (환경변수 설정)
 require('dotenv').config()
@@ -84,6 +85,7 @@ async function transfer(_address, _amount) {
 //console.log("-> transfer: ", transfer('0x739563DD6d5a8C0419775F83A8066B347C2da97b', 50))
 
 // 유저가 토큰 발행자에게 토큰을 보내주는 함수 (transaction의 주체자가 발행자)
+// 잘 안 씀..
 async function transfer_from(_private, _amount) {
      // 발행한 토큰을 지갑에 추가
      const token_info = require('./kip7.json')
@@ -123,7 +125,7 @@ async function transfer_from(_private, _amount) {
 // 두번째 지갑 프라이빗키 
 //transfer_from('0x289eff0c891aa43a6fbc046f35cc374264e8f33c2ff614888e02b47482d92570', 10)
 
-// 토큰 양 로드
+// 토큰 양 확인
 async function balance_of(_address) {
     const token_info = require('./kip7.json')
     const kip7 = await new caver.kct.kip7(token_info.address)
