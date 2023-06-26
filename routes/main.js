@@ -16,11 +16,26 @@ const connection = mysql.createConnection(
 
 // kip7.js 로드
 const token = require('../token/kip7.js')
+const session = require('express-session')
 
 module.exports = ()=>{
     // 기본 경로 localhost:3000/
     router.get('/', (req, res)=>{
-        res.render('login.ejs')
+        // Session logined에 데이터가 존재하지 않는다면 login.ejs 보여줌
+        if(!req.session.logined){
+            res.render('login.ejs')
+        } else {
+            res.redirect('/main') // 세션에 로그인 있다면 main 보여줌
+        }
+    })
+
+    router.get('/main', (req,res)=>{
+        if(!req.session.logined){
+            res.redirect('/')
+        }else{
+            console.log("로그인 되었습니다. session: ", session)
+            res.render('main.ejs')
+        }
     })
 
     // 회원가입 페이지

@@ -1,0 +1,24 @@
+body {
+    padding: 15px;
+    text-align: center;
+}
+
+input {
+    border: 1px solid darkgray;
+    border-radius: 20px;
+    height: 30px;
+    color: darkgray;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    width: 180px;
+    font-size: 11px;
+    outline: none;
+}
+.btn {
+    width: 193px;
+    color: white;
+    background-color: black;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
