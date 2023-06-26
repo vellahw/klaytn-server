@@ -34,9 +34,32 @@ module.exports = ()=>{
         const input_phone = req.body._phone
         const input_pass = req.body._pass
         console('-> 회원가입 정보: ', input_phone, input_pass)
-        const wallet = await token.create_wallet()
+        const wallet = await token.create_wallet() // 지갑 주소
         console.log('-> 지갑 생성 됐을까욤: ', wallet)
         
+        // db에 삽입
+        const sql = `
+            insert into
+            user
+            values(?, ?, ?)
+        ` 
+
+        const values = [ input_phone, input_pass, wallet ]
+
+        // 쿼리 연결
+        connection.query(
+            sql,
+            values,
+            function(err, result){
+                if(err){
+                    console.log(err)
+                    res.send(err)
+                } else {
+                    console.log(result)
+                    res.redirect('/') // 성공하면 메인페이지로 리다이렉트
+                }
+            }
+        )
     })
 
 }
