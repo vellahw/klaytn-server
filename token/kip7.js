@@ -134,7 +134,14 @@ async function balance_of(_address) {
     return balance
 }
 
+// 지갑을 생성해주는 함수
+async function create_wallet(){
+    const wallet = await caver.kas.wallet.createAccount()
+    console.log("-> 생성된 지갑: ", wallet)
+    return wallet.address // 지갑에 있는 주소 리턴
+}
+
 // 외부에서 함수 호출 할 수 있도록 하기
 module.exports = {
-    create_token, transfer, transfer_from, balance_of
+    create_token, transfer, transfer_from, balance_of, create_wallet
 }
