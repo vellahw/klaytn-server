@@ -39,7 +39,7 @@ async function create_token(_name, _symbol, _decimal, _amount) {
             initialSupply : _amount
         },
         // 수수료 낼 지갑 주소
-        keyring.address,
+        keyring.address, // 발행자
         keyringContainer
     )
 
@@ -82,4 +82,55 @@ async function transfer(_address, _amount) {
 }
 
 // 새로 생성한 지갑 주소 넣기
-console.log("-> transfer: ", transfer('0x739563DD6d5a8C0419775F83A8066B347C2da97b', 50))
+//console.log("-> transfer: ", transfer('0x739563DD6d5a8C0419775F83A8066B347C2da97b', 50))
+
+// 유저가 토큰 발행자에게 토큰을 보내주는 함수 (transaction의 주체자가 발행자)
+async function transfer_from(_private, _amount) {
+     // 발행한 토큰을 지갑에 추가
+     const token_info = require('./kip7.json')
+     const kip7 = await new caver.kct.kip7(token_info.address)
+     kip7.setWallet(keyringContainer)
+ 
+     // 토큰 발행자의 지갑 주소
+     const owner = keyring.address
+     console.log("-> owner: ", owner)
+ 
+     // 유저의 지갑 주소를 keyringContainerd에 등록
+     const keyring2 = keyringContainer.keyring.createFromPrivateKey(
+         _private
+     )
+
+     keyringContainer.add(keyring2)
+
+     // 내 지갑에 있는 일정 토큰을 다른 사람이 이동 시킬 수 있도록 권한 부여
+     // approve(권한을 받을 지갑의 주소, 토큰의 양, from)
+     await kip7.approve(owner, _amount, {
+            from : keyring2.address
+        })
+
+     const receipt = await kip7.transferFrom(
+        keyring2.address,
+        owner,
+        _amount,
+        {
+            from : owner
+        }
+     )
+
+     console.log('-> receipt: ', receipt)
+     return "토큰 이동 완료"
+}
+
+// 두번째 지갑 프라이빗키 
+transfer_from('0x289eff0c891aa43a6fbc046f35cc374264e8f33c2ff614888e02b47482d92570', 10)
+
+async function balance_of(_address) {
+    const token_info = require('./kip7.json')
+    const kip7 = await new caver.kct.kip7(token_info.address)
+    kip7.setWallet(keyringContainer)
+ 
+    const balance = await kip7.balanceOf(_address)
+
+    console.log("-> balance: ", balance)
+    return balance
+}
