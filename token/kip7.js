@@ -15,7 +15,6 @@ console.log("-> kas_info: ", kas_info)
 // accesskeyID 변수, secretAccessKey 생성
 const accesskeyID = kas_info.accessKeyId
 const secretAccessKey = kas_info.secretAccessKey
-
 // testnet의 chainid 지정
 const chainid = 1001
 
@@ -122,7 +121,7 @@ async function transfer_from(_private, _amount) {
 }
 
 // 두번째 지갑 프라이빗키 
-transfer_from('0x289eff0c891aa43a6fbc046f35cc374264e8f33c2ff614888e02b47482d92570', 10)
+//transfer_from('0x289eff0c891aa43a6fbc046f35cc374264e8f33c2ff614888e02b47482d92570', 10)
 
 async function balance_of(_address) {
     const token_info = require('./kip7.json')
@@ -133,4 +132,9 @@ async function balance_of(_address) {
 
     console.log("-> balance: ", balance)
     return balance
+}
+
+// 외부에서 함수 호출 할 수 있도록 하기
+module.exports = {
+    create_token, transfer, transfer_from, balance_of
 }
