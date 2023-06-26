@@ -94,7 +94,7 @@ module.exports = ()=>{
                         // Request 안에 Session 안에 logined 라는 키로 result 저장
                         req.session.logined = result[0] 
                     }
-                    res.redirect('/')
+                    res.redirect('/') // login 페이지로 리다이렉트
                 }
             }
         )
