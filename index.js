@@ -18,6 +18,6 @@ require('dotenv').config()
 
 // 모듈화 (라우팅)
 const token = require('./routes/token.js')() // 빈괄호=함수 호출
-app.use('/token', token) // /token 폴더 사용
+app.use('/token', token) // /token: 주소
 
 const server = app.listen(port, ()=>console.log(port, 'Server Start!!!'))
