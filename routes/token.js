@@ -21,8 +21,8 @@ module.exports = function(){
         // 유저가 보낸 데이터를 변수에 대입, 확인
         const input_name = req.query._name
         const input_symbol = req.query._symbol
-        const input_decimal = req.query._decimal
-        const input_amount = req.query._amount
+        const input_decimal = Number(req.query._decimal)
+        const input_amount = Number(req.query._amount)
         console.log("-> name, symbol, decimal, amount: ", input_name, input_symbol, input_decimal, input_amount)
        
         // 토큰 발행 함수 실행

@@ -6,6 +6,7 @@
     <title>Document</title>
     <style>
         body {
+            padding: 15px;
             text-align: center;
         }
 
@@ -14,17 +15,30 @@
             border-radius: 20px;
             height: 30px;
             color: darkgray;
+            margin-bottom: 10px;
+            padding-left: 10px;
+            width: 180px;
+            font-size: 11px;
+            outline: none;
+        }
+        .btn {
+            width: 193px;
+            color: white;
+            background-color: darkgrey;
+            cursor: pointer;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
+    <h2>토큰 발행하기</h2>
     <!-- 토큰의 이름, 심볼, 소수점, 발행량 입력하는 공간 -->
     <form action="/token/create" method="get">
         <input type="text" name="_name" placeholder="Name"><br>
         <input type="text" name="_symbol" placeholder="Symbol"><br>
         <input type="number" name="_decimal" placeholder="Decimal"><br>
         <input type="number" name="_amount" placeholder="Amount"><br>
-        <input type="submit" value="토큰 발행">
+        <input type="submit" value="발행" class="btn">
     </form>
 </body>
 </html>
