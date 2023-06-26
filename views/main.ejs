@@ -7,5 +7,12 @@
 </head>
 <body>
     <h3>메인 페이지입니다</h3>
+    <h3>토큰 충전하기</h3>
+    <form action="/token/charge" method="get">
+        <!-- 토큰의 충전량을 입력 -->
+        <input type="number" name="_amount" placeholder="Amount"><br>
+        <input type="submit" value="충전">
+    </form>
+    <button type="button" onclick="location.href='/info'">마이페이지</button>
 </body>
 </html>
