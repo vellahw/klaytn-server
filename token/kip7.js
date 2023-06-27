@@ -24,9 +24,11 @@ caver.initKASAPI(chainid, accesskeyID, secretAccessKey)
 
 // KAS에서 외부 지갑을 사용하기 위해서는 지갑을 등록해주어야 한다.
 const keyringContainer = new caver.keyringContainer()
+// 연결할 지갑 주소 + 프라이빗 키
 const keyring = keyringContainer.keyring.createFromPrivateKey(process.env.private_key)
-
+console.log("-> 이것은 키링입니다: ", keyring)
 keyringContainer.add(keyring)
+console.log("->이것은 컨테이너: ", keyringContainer)
 
 // 토큰 생성 함수 (이름, 심볼, 소수점, 만들 양)
 async function create_token(_name, _symbol, _decimal, _amount) {
@@ -60,7 +62,7 @@ async function create_token(_name, _symbol, _decimal, _amount) {
 }
 
 // 함수 호출
-//create_token('test', 'TST', 0, 1000000)
+create_token('test', 'TST', 0, 1000000)
 
 // 토큰을 거래하는 함수 선언 
 async function transfer(_address, _amount) {
@@ -82,7 +84,7 @@ async function transfer(_address, _amount) {
 }
 
 // 새로 생성한 지갑 주소 넣기
-//console.log("-> transfer: ", transfer('0x739563DD6d5a8C0419775F83A8066B347C2da97b', 50))
+// transfer('0x739563DD6d5a8C0419775F83A8066B347C2da97b', 80)
 
 // 유저가 토큰 발행자에게 토큰을 보내주는 함수 (transaction의 주체자가 발행자)
 // 잘 안 씀..
@@ -105,7 +107,7 @@ async function transfer_from(_private, _amount) {
 
      // 내 지갑에 있는 일정 토큰을 다른 사람이 이동 시킬 수 있도록 권한 부여
      // approve(권한을 받을 지갑의 주소, 토큰의 양, from)
-     await kip7.approve(owner, _amount, {
+     await kip7.approve(owner, _amount,{
             from : keyring2.address
         })
 
