@@ -125,7 +125,7 @@ async function transfer_from(_private, _amount) {
 }
 
 // 두번째 지갑 프라이빗키 
-transfer_from('0x289eff0c891aa43a6fbc046f35cc374264e8f33c2ff614888e02b47482d92570', 5)
+//transfer_from('0x289eff0c891aa43a6fbc046f35cc374264e8f33c2ff614888e02b47482d92570', 5)
 
 // 토큰 양 확인
 async function balance_of(_address) {
@@ -145,6 +145,8 @@ async function create_wallet(){
     console.log("-> 생성된 지갑: ", wallet)
     return wallet.address // 지갑에 있는 주소 리턴
 }
+
+//create_wallet()
 
 // 외부에서 함수 호출 할 수 있도록 하기
 module.exports = {
