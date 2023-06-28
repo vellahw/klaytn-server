@@ -16,7 +16,6 @@ const connection = mysql.createConnection(
 
 // kip7.js 로드
 const token = require('../token/kip7.js')
-const session = require('express-session')
 
 module.exports = ()=>{
     // 기본 경로 localhost:3000/

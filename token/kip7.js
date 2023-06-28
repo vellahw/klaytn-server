@@ -62,7 +62,7 @@ async function create_token(_name, _symbol, _decimal, _amount) {
 }
 
 // 함수 호출
-create_token('test', 'TST', 0, 1000000)
+//create_token('test', 'TST', 0, 1000000)
 
 // 토큰을 거래하는 함수 선언 
 async function transfer(_address, _amount) {
@@ -84,7 +84,7 @@ async function transfer(_address, _amount) {
 }
 
 // 새로 생성한 지갑 주소 넣기
-// transfer('0x739563DD6d5a8C0419775F83A8066B347C2da97b', 80)
+//transfer('0x739563DD6d5a8C0419775F83A8066B347C2da97b', 50)
 
 // 유저가 토큰 발행자에게 토큰을 보내주는 함수 (transaction의 주체자가 발행자)
 // 잘 안 씀..
@@ -125,7 +125,7 @@ async function transfer_from(_private, _amount) {
 }
 
 // 두번째 지갑 프라이빗키 
-//transfer_from('0x289eff0c891aa43a6fbc046f35cc374264e8f33c2ff614888e02b47482d92570', 10)
+transfer_from('0x289eff0c891aa43a6fbc046f35cc374264e8f33c2ff614888e02b47482d92570', 5)
 
 // 토큰 양 확인
 async function balance_of(_address) {
