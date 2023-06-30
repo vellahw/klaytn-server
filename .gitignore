@@ -1,4 +1,5 @@
-.env
-node_modules/
-.kas
 token/*.json
+node_modules/
+.env
+.kas
+.DS_Store

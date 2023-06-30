@@ -32,7 +32,7 @@ module.exports = ()=>{
         if(!req.session.logined){
             res.redirect('/')
         }else{
-            console.log("로그인 되었습니다. session: ", session)
+            console.log("로그인 되었습니다. 저장된 session: ", req.session)
             res.render('main.ejs')
         }
     })
@@ -64,7 +64,7 @@ module.exports = ()=>{
         connection.query(
             sql,
             values,
-            function(err, result){
+            (err, result)=>{
                 if(err){
                     console.log(err)
                     res.send(err)
