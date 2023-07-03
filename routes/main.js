@@ -1,6 +1,13 @@
 const express = require('express')
 const router = express.Router()
 
+router.all('/매핑주소',function(req, res, next) {
+    //인터셉터
+    next();
+}, function(req, res, next) {
+  //인터셉터 이후 행동
+});
+
 // DB에 저장하기 위한 Mysql 로드
 const mysql = require('mysql2')
 
@@ -20,11 +27,15 @@ const token = require('../token/kip7.js')
 module.exports = ()=>{
     // 기본 경로 localhost:3000/
     router.get('/', (req, res)=>{
-        // Session logined에 데이터가 존재하지 않는다면 login.ejs 보여줌
-        if(!req.session.logined){
-            res.render('login.ejs')
-        } else {
-            res.redirect('/main') // 세션에 로그인 있다면 main 보여줌
+        if(req.session.admin){ // 로그인 계정이 관리자라면
+            return res.render('create_token.ejs')
+        } 
+        if(req.session.logined) {
+            return res.redirect('/main') // 세션에 로그인 있다면 main 보여줌
+        }
+        if(!req.session.logined) {
+            // Session logined에 데이터가 존재하지 않는다면 login.ejs 보여줌
+            return res.render('login.ejs')
         }
     })
 
@@ -105,9 +116,14 @@ module.exports = ()=>{
                     // 로그인이 성공하는 조건? == (result.length !=0)
                     // 데이터는 배열 안의 json 형태:  [{}]
                     if(result.length != 0) {
-                        // 세션에 데이터 저장
-                        // Request 안에 Session 안에 logined 라는 키로 result 저장
-                        req.session.logined = result[0] 
+                        if(input_phone == '01099998888') { // 관리자라는 조건
+                            // 세션에 데이터 저장
+                            // request 안에 Session 안에 admin이라는 키로 result 저장
+                            req.session.admin = result[0] // 관리자 저장 키: admin
+                        } else {
+                            // request 안에 session 안에 logined라는 키로 result 저장
+                            req.session.logined = result[0] // 일반 유저 저장 키: logined
+                        }
                     }
                     res.redirect('/') // login 페이지로 리다이렉트
                 }
